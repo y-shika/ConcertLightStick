@@ -43,7 +43,7 @@ namespace ECSTutorial
             }
             else
             {
-                foreach (var (transform, entity) in SystemAPI.Query<RefRO<LocalTransform>>().WithNone<RotationSpeed>().WithEntityAccess())
+                foreach (var (_, entity) in SystemAPI.Query<RefRO<LocalTransform>>().WithNone<RotationSpeed, NotReparenting>().WithEntityAccess())
                 {
                     ecb.AddComponent(entity, new Parent { Value = rotatorEntity });
                 }
