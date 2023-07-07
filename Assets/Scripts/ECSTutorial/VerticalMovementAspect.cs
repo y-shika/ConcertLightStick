@@ -11,7 +11,7 @@ namespace ECSTutorial
 
         public void Move(double elapsedTime)
         {
-            m_Transform.ValueRW.Position.y = (float) math.sin(elapsedTime * m_Speed.ValueRO.RadiansPerSecond);
+            // m_Transform.ValueRW.Position.y = (float) math.sin(elapsedTime * m_Speed.ValueRO.RadiansPerSecond);
         }
     }
 }
