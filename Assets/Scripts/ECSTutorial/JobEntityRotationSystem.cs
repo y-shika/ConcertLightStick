@@ -5,7 +5,7 @@ using Unity.Transforms;
 
 namespace ECSTutorial
 {
-    public partial struct JobRotationSystem : ISystem
+    public partial struct JobEntityRotationSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)

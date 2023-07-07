@@ -13,14 +13,14 @@ namespace ECSTutorial
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-            var movement = new float3(0, -SystemAPI.Time.DeltaTime * 5f, 0);
+            // var movement = new float3(0, -SystemAPI.Time.DeltaTime * 5f, 0);
 
             foreach (var (transform, entity) in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<RotationSpeed>().WithEntityAccess())
             {
-                transform.ValueRW.Position += movement;
+                // transform.ValueRW.Position += movement;
                 if (transform.ValueRO.Position.y < 0)
                 {
-                    ecb.DestroyEntity(entity);
+                    // ecb.DestroyEntity(entity);
                 }
             }
         }
