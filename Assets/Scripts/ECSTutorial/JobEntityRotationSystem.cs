@@ -8,6 +8,13 @@ namespace ECSTutorial
     public partial struct JobEntityRotationSystem : ISystem
     {
         [BurstCompile]
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<PostTransformMatrix>();
+            state.RequireForUpdate<RotationSpeed>();
+        }
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var job = new RotateAndScaleJob

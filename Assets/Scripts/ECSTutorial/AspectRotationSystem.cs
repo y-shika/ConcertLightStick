@@ -7,6 +7,12 @@ namespace ECSTutorial
     public partial struct AspectRotationSystem : ISystem
     {
         [BurstCompile]
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<RotationSpeed>();
+        }
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;

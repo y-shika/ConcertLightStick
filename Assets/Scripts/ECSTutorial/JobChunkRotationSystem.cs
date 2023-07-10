@@ -10,6 +10,12 @@ namespace ECSTutorial
     public partial struct JobChunkRotationSystem : ISystem
     {
         [BurstCompile]
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<RotationSpeed>();
+        }
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var spinningCubesQuery = SystemAPI.QueryBuilder().WithAll<RotationSpeed, LocalTransform>().Build();

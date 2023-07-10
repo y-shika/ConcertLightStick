@@ -1,6 +1,7 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace ECSTutorial
 {
@@ -13,6 +14,7 @@ namespace ECSTutorial
         public void OnCreate(ref SystemState state)
         {
             _time = Interval;
+            state.RequireForUpdate<EnableableRotationSpeed>();
         }
 
         [BurstCompile]

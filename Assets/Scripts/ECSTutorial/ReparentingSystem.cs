@@ -16,6 +16,7 @@ namespace ECSTutorial
         {
             _time = Interval;
             _attached = true;
+            state.RequireForUpdate<RotationSpeed>();
         }
         
         [BurstCompile]

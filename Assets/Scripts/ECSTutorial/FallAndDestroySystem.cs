@@ -8,6 +8,12 @@ namespace ECSTutorial
     public partial struct FallAndDestroySystem : ISystem
     {
         [BurstCompile]
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<RotationSpeed>();
+        }
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
