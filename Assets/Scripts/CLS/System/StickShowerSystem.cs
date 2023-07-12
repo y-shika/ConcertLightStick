@@ -22,7 +22,7 @@ namespace CLS.System
             state.Enabled = false;
             
             var stickShower = SystemAPI.GetSingleton<StickShower>();
-            var instances = state.EntityManager.Instantiate(stickShower.prefab, stickShower.audience.Count, Allocator.Temp);
+            var instances = state.EntityManager.Instantiate(stickShower.stickPrefab, stickShower.audience.Count, Allocator.Temp);
 
             for (int i = 0; i < instances.Length; i++)
             {

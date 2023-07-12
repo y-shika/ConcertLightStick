@@ -5,7 +5,7 @@ namespace CLS.Component
 {
     public struct StickShower : IComponentData
     {
-        public Unity.Entities.Entity prefab;
+        public Unity.Entities.Entity stickPrefab;
         public Audience audience;
     }
 }

@@ -152,14 +152,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694e8c6bcf1a455b8365ea26c8d490d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6061059141276880431, guid: 586630909230a48be858d9bf2ed297d4, type: 3}
+  stickPrefab: {fileID: 6061059141276880431, guid: 586630909230a48be858d9bf2ed297d4,
+    type: 3}
   audience:
     seatPerBlock:
-      x: 20
+      x: 30
       y: 20
     blockCount:
-      x: 10
+      x: 20
       y: 10
+    seatPitch:
+      x: 0.4
+      y: 0.8
+    aisleWidth:
+      x: 0.7
+      y: 1.2
+    distanceFromStage: 10
 --- !u!4 &152032413
 Transform:
   m_ObjectHideFlags: 0
