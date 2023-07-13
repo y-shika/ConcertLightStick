@@ -18,9 +18,21 @@ namespace CLS.System
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
 
-            foreach (var (transform, _) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<StickSwinger>>())
+            var job = new SwingJob
             {
-                transform.ValueRW = transform.ValueRO.RotateX(3f * deltaTime);
+                deltaTime = deltaTime
+            };
+            job.Schedule();
+        }
+        
+        [BurstCompile]
+        partial struct SwingJob : IJobEntity
+        {
+            public float deltaTime;
+
+            void Execute(ref LocalTransform transform, in StickSwinger _)
+            {
+                transform = transform.RotateX(3f * deltaTime);
             }
         }
     }
