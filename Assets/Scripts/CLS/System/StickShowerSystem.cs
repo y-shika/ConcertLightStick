@@ -22,13 +22,19 @@ namespace CLS.System
             state.Enabled = false;
             
             var stickShower = SystemAPI.GetSingleton<StickShower>();
-            var instances = state.EntityManager.Instantiate(stickShower.stickPrefab, stickShower.audience.Count, Allocator.Temp);
+            var entities = state.EntityManager.Instantiate(stickShower.stickPrefab, stickShower.audience.Count, Allocator.Temp);
 
-            for (int i = 0; i < instances.Length; i++)
+            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            
+            for (int i = 0; i < entities.Length; i++)
             {
-                var transform = SystemAPI.GetComponentRW<LocalTransform>(instances[i]);
+                var transform = SystemAPI.GetComponentRW<LocalTransform>(entities[i]);
                 transform.ValueRW.Position = stickShower.audience.GetPositionByIndex(i);
+
+                ecb.AddComponent(entities[i], new StickSwinger());
             }
+            
+            ecb.Playback(state.EntityManager);
         }
     }
 }
