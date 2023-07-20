@@ -22,7 +22,7 @@ namespace CLS.System
             {
                 deltaTime = deltaTime
             };
-            job.Schedule();
+            job.ScheduleParallel();
         }
         
         [BurstCompile]
