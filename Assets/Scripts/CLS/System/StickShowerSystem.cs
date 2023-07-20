@@ -8,8 +8,6 @@ namespace CLS.System
 {
     public partial struct StickShowerSystem : ISystem
     {
-        private uint _updateCounter;
-        
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
