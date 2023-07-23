@@ -21,7 +21,7 @@ namespace CLS.Entity
         private float OriginPosX => _originPosX ??= _stagePosition.x - (seatPitch.x * seatPerBlock.x * blockCount.x + aisleWidth.x * (blockCount.x - 1)) / 2f;
         private float? _originPosX;
 
-        private float OriginPosZ => _originPosZ ??= _stagePosition.z + distanceFromStage;
+        private float OriginPosZ => _originPosZ ??= _stagePosition.z - distanceFromStage;
         private float? _originPosZ;
 
         private float WidthPerBlockWithAisle => _widthPerBlockWithAisle ??= seatPitch.x * seatPerBlock.x + aisleWidth.x;
@@ -39,7 +39,7 @@ namespace CLS.Entity
         private float3 GetPositionByBlockAndSeat(int2 block, int2 seat) => new(
             OriginPosX + block.x * WidthPerBlockWithAisle + seat.x * seatPitch.x,
             0,
-            OriginPosZ + block.y * DepthPerBlockWithAisle + seat.y * seatPitch.y
+            OriginPosZ - block.y * DepthPerBlockWithAisle - seat.y * seatPitch.y
         );
         
         private (int2 block, int2 seat) GetBlockAndSeat(int index)
