@@ -1,7 +1,9 @@
 using CLS.Component;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
+using Random = Unity.Mathematics.Random;
 
 namespace CLS.System
 {
@@ -16,11 +18,9 @@ namespace CLS.System
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var deltaTime = SystemAPI.Time.DeltaTime;
-
             var job = new SwingJob
             {
-                deltaTime = deltaTime
+                time = (float) SystemAPI.Time.ElapsedTime
             };
             job.ScheduleParallel();
         }
@@ -28,11 +28,23 @@ namespace CLS.System
         [BurstCompile]
         partial struct SwingJob : IJobEntity
         {
-            public float deltaTime;
+            public float time;
 
-            void Execute(ref LocalTransform transform, in StickSwinger _)
+            void Execute(ref LocalTransform transform, in StickSwinger swinger)
             {
-                transform = transform.RotateX(3f * deltaTime);
+                var rand = new Random(1);
+                var xform = transform.ToMatrix();
+                var phase = math.PI * time;
+                
+                var angle = math.cos(phase);
+                var angle_unsmooth = math.smoothstep(-1, 1, angle) * 2 - 1;
+                angle = math.lerp(angle, angle_unsmooth, rand.NextFloat());
+                angle *= rand.NextFloat(.015f, .05f);
+                
+                var axis = math.float3(0, 0, 1);
+                
+                var result = math.mul(xform, float4x4.AxisAngle(axis, angle));
+                transform = LocalTransform.FromMatrix(result);
             }
         }
     }

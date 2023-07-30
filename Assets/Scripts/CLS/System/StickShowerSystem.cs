@@ -29,7 +29,10 @@ namespace CLS.System
                 var transform = SystemAPI.GetComponentRW<LocalTransform>(entities[i]);
                 transform.ValueRW.Position = stickShower.audience.GetPositionByIndex(i);
 
-                ecb.AddComponent(entities[i], new StickSwinger());
+                ecb.AddComponent(entities[i], new StickSwinger
+                {
+                    audience = stickShower.audience
+                });
             }
             
             ecb.Playback(state.EntityManager);
