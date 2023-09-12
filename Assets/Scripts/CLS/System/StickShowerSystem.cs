@@ -31,7 +31,7 @@ namespace CLS.System
 
                 ecb.AddComponent(entities[i], new StickSwinger
                 {
-                    audience = stickShower.audience
+                    index = i,
                 });
             }
             

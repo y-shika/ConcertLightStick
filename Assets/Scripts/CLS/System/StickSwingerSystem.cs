@@ -32,14 +32,16 @@ namespace CLS.System
 
             void Execute(ref LocalTransform transform, in StickSwinger swinger)
             {
-                var rand = new Random(1);
+                var rand = new Random(((uint) swinger.index) + 1);
+                rand.NextUInt4();
+                
                 var xform = transform.ToMatrix();
-                var phase = math.PI * time;
+                var phase = math.PI * (time + rand.NextFloat(-1f, 1f) * 3f);
                 
                 var angle = math.cos(phase);
                 var angle_unsmooth = math.smoothstep(-1, 1, angle) * 2 - 1;
                 angle = math.lerp(angle, angle_unsmooth, rand.NextFloat());
-                angle *= rand.NextFloat(.015f, .05f);
+                angle *= rand.NextFloat(.005f, .03f);
                 
                 var axis = math.float3(0, 0, 1);
                 

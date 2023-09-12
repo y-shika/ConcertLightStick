@@ -159,8 +159,8 @@ MonoBehaviour:
       x: 20
       y: 20
     blockCount:
-      x: 2
-      y: 2
+      x: 10
+      y: 20
     seatPitch:
       x: 0.4
       y: 0.8
