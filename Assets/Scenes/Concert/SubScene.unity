@@ -162,11 +162,11 @@ MonoBehaviour:
       x: 10
       y: 20
     seatPitch:
-      x: 0.4
-      y: 0.8
+      x: 0.8
+      y: 1.6
     aisleWidth:
-      x: 0.7
-      y: 1.2
+      x: 1.4
+      y: 2.4
     distanceFromStage: 10
 --- !u!4 &152032413
 Transform:
